@@ -1,9 +1,10 @@
 import { db } from "@/db"
 import { repositories } from "@/db/schema"
+import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
-    
+
     const { repoId, userId, name, full_name, private_, html_url, description, language, updated_at, default_branch, owner } = await req.json();
     console.log("user-repo body:", full_name);
 
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
         repoId,
         userId,
         name,
-        fullName:full_name,
+        fullName: full_name,
         private: private_ ? 1 : 0,
         htmlUrl: html_url,
         description,
@@ -24,4 +25,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(result)
 
 
+}
+
+export async function GET(req: NextRequest) {
+    const { searchParams } = new URL(req.url);
+
+    const userId = searchParams.get('userId');
+
+    const result = await db.select().from(repositories).where(
+        //@ts-ignore
+        eq(repositories.userId, userId)
+    )
+
+    return NextResponse.json(result);
 }
