@@ -7,8 +7,7 @@ export async function GET() {
 
     if (!token) {
         return NextResponse.json({ error: 'Github token not found' }, { status: 401 })
-    }
-
+    }        
     const allRepos = [];
     let page = 1;
 
@@ -16,14 +15,14 @@ export async function GET() {
         const res = await fetch(`https://api.github.com/user/repos?per_page=100&page=${page}&sort=updated`, {
             headers: {
                 Authorization: `Bearer ${token}`,
-                Accept: 'application/vnd.github+json'
+                Accept: 'application/vnd.github.+json'
             }
         })
 
-        const repos = await res.json();
+        const repo = await res.json();
 
-        if (!repos.length) break;
-        allRepos.push(...repos);
+        if (!repo.length) break;
+        allRepos.push(...repo);
         page++;
     }
 
