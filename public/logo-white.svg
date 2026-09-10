@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40" fill="none">
+  <defs>
+    <linearGradient id="logoGradWhite" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <filter id="glowWhite" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#3B82F6" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Modern App Icon -->
+  <g filter="url(#glowWhite)">
+    <rect x="2" y="2" width="36" height="36" rx="10" fill="url(#logoGradWhite)" />
+    <path d="M12 20L18 26L28 14" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="28" cy="11" r="2.5" fill="#93C5FD" />
+  </g>
+
+  <!-- Brand Typography for Dark Mode -->
+  <g transform="translate(48, 0)">
+    <text x="0" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">
+      Agent<tspan fill="#60A5FA">QA</tspan>
+    </text>
+    
+    <rect x="94" y="10" width="32" height="15" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1" />
+    <text x="110" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#60A5FA" text-anchor="middle" letter-spacing="0.5">
+      AI
+    </text>
+
+    <text x="0" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="600" fill="#94A3B8" letter-spacing="1.2">
+      TEST AUTOMATION
+    </text>
+  </g>
+</svg>
