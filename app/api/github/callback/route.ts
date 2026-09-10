@@ -7,12 +7,15 @@ export async function GET(req: NextRequest) {
         return NextResponse.redirect(new URL('/workspace?error=missing_code', req.url))
     }
 
+    const clientId = process.env.GITHUB_CLIENT_ID?.trim();
+    const clientSecret = process.env.GITHUB_CLIENT_SECRET?.trim();
+
     const res = await fetch('https://github.com/login/oauth/access_token', {
         method: 'POST',
         headers: { 'content-type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-            client_id:process.env.GITHUB_CLIENT_ID!,
-            client_secret:process.env.GITHUB_CLIENT_SECRET!,
+            client_id: clientId,
+            client_secret: clientSecret,
             code
         })
     })

@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation"
 
 export async function GET() {
-    const clientId = process.env.GITHUB_CLIENT_ID;
-    const redirectUri = process.env.GITHUB_REDIRECT_URL || (process.env.NEXT_PUBLIC_APP_URL ? `${process.env.NEXT_PUBLIC_APP_URL}/api/github/callback` : undefined);
+    const clientId = process.env.GITHUB_CLIENT_ID?.trim();
+    let redirectUri = (process.env.GITHUB_REDIRECT_URL || (process.env.NEXT_PUBLIC_APP_URL ? `${process.env.NEXT_PUBLIC_APP_URL}/api/github/callback` : undefined))?.trim();
 
     if (!clientId) {
         console.error("Missing GITHUB_CLIENT_ID environment variable");
