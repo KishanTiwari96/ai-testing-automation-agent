@@ -1,11 +1,22 @@
 import { redirect } from "next/navigation"
 
 export async function GET() {
+    const clientId = process.env.GITHUB_CLIENT_ID;
+    const redirectUri = process.env.GITHUB_REDIRECT_URL || (process.env.NEXT_PUBLIC_APP_URL ? `${process.env.NEXT_PUBLIC_APP_URL}/api/github/callback` : undefined);
+
+    if (!clientId) {
+        console.error("Missing GITHUB_CLIENT_ID environment variable");
+        return redirect('/workspace?error=missing_github_client_id');
+    }
+
     const params = new URLSearchParams({
-        client_id: process.env.GITHUB_CLIENT_ID!,
-        redirect_uri: process.env.GITHUB_REDIRECT_URL!,
+        client_id: clientId,
         scope: 'repo read:user'
     })
 
-    redirect(`https://github.com/login/oauth/authorize?${params}`)
+    if (redirectUri) {
+        params.set('redirect_uri', redirectUri)
+    }
+
+    redirect(`https://github.com/login/oauth/authorize?${params.toString()}`)
 }
